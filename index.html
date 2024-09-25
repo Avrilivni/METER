@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>METER</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #000;
+            color: #fff;
+        }
+        .screen {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        #intro {
+            transition: opacity 2s ease-out;
+        }
+        #intro h1 {
+            font-size: 5rem;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px rgba(255,255,255,0.5);
+        }
+        .measure-animation {
+            width: 200px;
+            height: 4px;
+            background-color: rgba(255,255,255,0.2);
+            position: relative;
+            overflow: hidden;
+            border-radius: 2px;
+        }
+        .measure-animation::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 50px;
+            height: 100%;
+            background-color: #4CAF50;
+            animation: measure 2s linear infinite;
+            box-shadow: 0 0 10px #4CAF50;
+        }
+        @keyframes measure {
+            0% { left: -50px; }
+            100% { left: 200px; }
+        }
+        #options {
+            display: none;
+            background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+        }
+        button {
+            margin: 15px;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0,0,0,0.15);
+        }
+        #measure-area { background-color: #4CAF50; color: white; }
+        #measure-object { background-color: #2196F3; color: white; }
+        #level { background-color: #FFC107; color: black; }
+        #copyright {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            font-size: 0.8rem;
+            opacity: 0.5;
+        }
+    </style>
+</head>
+<body>
+    <div id="intro" class="screen">
+        <h1>METER</h1>
+        <div class="measure-animation"></div>
+    </div>
+    <div id="options" class="screen">
+        <button id="measure-area">מדוד שטח</button>
+        <button id="measure-object">מדוד אובייקט</button>
+        <button id="level">פלס</button>
+    </div>
+    <div id="copyright">•Avri</div>
+
+    <script>
+        setTimeout(() => {
+            const intro = document.getElementById('intro');
+            intro.style.opacity = '0';
+            setTimeout(() => {
+                intro.style.display = 'none';
+                document.getElementById('options').style.display = 'flex';
+            }, 2000);
+        }, 3000);
+
+        document.getElementById('measure-area').onclick = () => alert('מעבר למדידת שטח');
+        document.getElementById('measure-object').onclick = () => alert('מעבר למדידת אובייקט');
+        document.getElementById('level').onclick = () => alert('מעבר לפלס');
+    </script>
+</body>
+</html>
+
